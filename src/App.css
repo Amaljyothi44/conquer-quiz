@@ -1,38 +1,222 @@
-.App {
-  text-align: center;
+:root {
+  --main-color: #101922;
+  --box: #232148;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Container {
+  background-color: var(--main-color);
+  width: 100%;
+  height: 120vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.header {
+  padding-top: 0.8rem;
+}
+
+.quiz {
+  margin-top: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding-top: 8rem;
+  padding-left: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.bar-top-line {
+  margin-top: 15px;
+  background-color: aliceblue;
+  height: 1px;
+  width: 100%;
+}
+
+.Container .box {
+  align-self: center;
+  width: 300px;
+  min-height: 450px;
+  flex-shrink: 0;
+  border-radius: 34px;
+  background: var(--box);
+  /* transform: translate(0px, -1300px); */
+  opacity: 1;
+}
+
+.box-container {
+  padding: 20px;
+  color: aliceblue;
+}
+
+.Question {
+  max-width: 250px;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.Option-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.option {
+  width: 270px;
+  min-height: 40px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: aliceblue;
+  border-width: 1px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
+.link {
+  width: 270px;
+  min-height: 40px;
+  border-radius: 10px;
+  background: #5367fe;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.op-text {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.box2{
+  width: 255px;
+  min-height: 450px;
+  border-radius: 34px;
+  background: var(--box);
+  top: 0; 
+  left: 0; 
+}
+
+.box3{
+  width: 270px;
+  min-height: 450px;
+  border-radius: 34px;
+  background: var(--box);
+  top: 0; 
+  left: 0; 
+}
+
+.box4{
+  width: 280px;
+  min-height: 450px;
+  border-radius: 34px;
+  background: var(--box);
+  top: 0; 
+  left: 0; 
+}
+
+.Container .box2 {
+  margin-top: 10px;
+  position: relative; 
+  transform: translate(40px, 0px);
+  opacity: 0.2;
+  
+}
+
+.Container .box3 {
+  transform: translate(35px, -435px);
+  opacity: 0.4;
+
+}
+
+.Container .box4 {
+  transform: translate(32px, -870px);
+  opacity: 0.6;
+
+}
+
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+      transform: translate3d(0,40px,0)
+  }
+
+  to {
+      transform: translate3d(0,-1300px,0);
+      opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+      transform: translate3d(0,40px,0)
+  }
+
+  to {
+      transform: translate3d(0,-1300px,0);
+      opacity: 1
+  }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+  opacity: 0
+}
+
+.fadeInUp {
+  opacity: 0;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
+}
+
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.option.correct {
+  background-color: #2ecc71;
+  border-style: solid;
+  border-color: #2ecc71;
+  font-weight: 500;
+}
+
+.option.selected {
+  border-style: solid;
+  border-color: #3498db; 
+}
+
+
+.option.incorrect {
+  color: red;
+}
+
+@keyframes fadeInUpQuestion {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+.animatedFadeInUpQuestion {
+  animation: fadeInUpQuestion 0.5s ease-in-out;
+}
+
