@@ -222,3 +222,38 @@
   animation: fadeInUpQuestion 0.5s ease-in-out;
 }
 
+.number {
+  display: inline-block;
+  margin-right: 35px; /* Adjust the margin as needed */
+}
+
+.mark, .count {
+  display: inline-block;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+/* Optionally, you can style the marks and counts further */
+.mark p, .count p {
+  margin: 0;
+ 
+  /* Add additional styling as needed */
+}
+.mark {
+  width: 30px;
+  height: 30px;
+  background-color: #2ecc71;
+  border-radius: 2px;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.count {
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  border-radius: 2px;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5px;
+}

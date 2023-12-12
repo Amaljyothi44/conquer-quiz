@@ -1,45 +1,63 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 
 const App = () => {
   const [question, setQuestion] = useState(null);
+  const [dbcount, setDbcount] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const selectedOptionRef = useRef(null);
   useEffect(() => {
-    axios.get('https://conquer-api.onrender.com/api/get-next-question/')
-      .then(response => {
-        setQuestion(response.data);
+    const questionUrl = 'https://conquer-api.onrender.com/api/get-next-question/';
+    const countUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+    const promises = [
+      axios.get(questionUrl),
+      axios.get(countUrl),
+    ];
+    Promise.all(promises)
+      .then(([questionResponse, countResponse]) => {
+     
+        setQuestion(questionResponse.data);
+        setDbcount(countResponse.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       })
       .finally(() => {
         setLoading(false);
-        
       });
   }, []);
+  
 
   const fetchNextQuestion = () => {
     setLoading(true);
-    axios.get('https://conquer-api.onrender.com/api/get-next-question/')
-      .then(response => {
-        setQuestion(response.data);
+    const questionUrl = 'https://conquer-api.onrender.com/api/get-next-question/';
+    const countUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+
+    const promises = [
+      axios.get(questionUrl),
+      axios.get(countUrl),
+    ];
+    Promise.all(promises)
+      .then(([questionResponse, countResponse]) => {
+        setQuestion(questionResponse.data);
+        setDbcount(countResponse.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       })
       .finally(() => {
+        
         setLoading(false);
         setSelectedOption(null);
         setAnswerSubmitted(false);
       });
   };
   
+
   const submitAnswer = () => {
-    // Mark the answer as submitted
     setAnswerSubmitted(true);
   };
 
@@ -50,32 +68,44 @@ const App = () => {
       submitAnswer2(selectedOptionRef.current)
     }
   };
-  
+
   const submitAnswer2 = (value) => {
- 
     if (value !== null) {
-      
+      setLoading(true);
       const correctAnswer = question.correctOption;
       const quizId = question.id;
-      console.log(value);
-      console.log(correctAnswer);
       const isCorrect = value === correctAnswer;
       const postData = { result: isCorrect };
-      console.log(postData);
-    
-      axios.post(`http://localhost:8000/api/update-repetition/${quizId}/`, postData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },})
-        .then(response => {
-          console.log(response.data);
+      const updateRepetitionUrl = `https://conquer-api.onrender.com/api/update-repetition/${quizId}/`;
+      const countMarkUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+  
+      const promises = [
+        axios.post(updateRepetitionUrl, postData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }),
+        axios.post(countMarkUrl, postData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }),
+      ];
+  
+      Promise.all(promises)
+        .then(([updateRepetitionResponse, countMarkResponse]) => {
+          console.log('Update Repetition Response:', updateRepetitionResponse.data);
+          console.log('Count Mark Response:', countMarkResponse.data);
         })
         .catch(error => {
-          console.log('Error updating repetition:', error);
+          console.error('Error updating repetition:', error);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   };
-
+  
   return (
     <div className='Container'>
 
@@ -86,22 +116,24 @@ const App = () => {
       <div className='box2' />
       <div className='box3' />
       <div className='box4' />
-      
+
       <div className={`box animated animatedFadeInUp fadeInUp ${loading ? 'loading' : ''}`}>
         <div className='box-container animatedFadeInUpQuestion '>
           {loading ? (
             <div className='loading-spinner'></div>
           ) : (
             <>
-              <p>Qs: {question.questionNumber} | {question.subject}</p>
+              <p className='number'>Qs: {question.questionNumber} | {question.subject}</p>
+              <div className='mark'><p>{dbcount.mark}</p></div>
+              <div className='count'><p>{dbcount.count}</p></div>
               <div className='Question  animatedFadeInUpQuestion'>
                 <p>{question.question}</p>
               </div>
               <div className='Option-container animatedFadeInUpQuestion'>
                 {question.options.map((option, index) => (
-                  <div className={`option ${selectedOption === index  ? 'selected' : ''} ${answerSubmitted && question?.correctOption === index ? 'correct' : ''}`}
+                  <div className={`option ${selectedOption === index ? 'selected' : ''} ${answerSubmitted && question?.correctOption === index ? 'correct' : ''}`}
                     key={index}
-                    onClick={() => {handleOptionClick(index); submitAnswer()}}
+                    onClick={() => { handleOptionClick(index); submitAnswer() }}
                     style={{ backgroundColor: selectedOption === index && question?.correctOption === index ? '#0d9646' : '' }}
                   >
                     <div className='op-text'>{option}</div>
@@ -115,8 +147,8 @@ const App = () => {
                   </a>
                 </div>
               )}
-              <div className='link' style={{backgroundColor:'blue'}}
-              onClick={() => { fetchNextQuestion(); }}>
+              <div className='link' style={{ backgroundColor: 'blue' }}
+                onClick={() => { fetchNextQuestion(); }}>
                 <div className='op-text'>Next Qus</div>
               </div>
             </>
