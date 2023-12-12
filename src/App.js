@@ -63,16 +63,16 @@ const App = () => {
       const postData = { result: isCorrect };
       console.log(postData);
     
-    axios.post(`http://localhost:8000/api/update-repetition/${quizId}/`, postData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },})
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log('Error updating repetition:', error);
-      });
+      axios.post(`http://localhost:8000/api/update-repetition/${quizId}/`, postData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },})
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log('Error updating repetition:', error);
+        });
     }
   };
 
