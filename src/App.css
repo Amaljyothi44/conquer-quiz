@@ -224,7 +224,7 @@
 
 .number {
   display: inline-block;
-  margin-right: 35px; /* Adjust the margin as needed */
+  margin-right: 20px; /* Adjust the margin as needed */
 }
 
 .mark, .count {
