@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
+import AddLinkModal from'./AddLinkModal.js'
 
 const App = () => {
   const [question, setQuestion] = useState(null);
@@ -9,6 +10,39 @@ const App = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const selectedOptionRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [questionLink, setQuestionLink] = useState('');
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSaveLink = (link) => {
+    setQuestionLink(link);
+    console.log(questionLink);
+  
+    const quizId = question.id;
+    const postData = {
+      'link': link
+  }
+    axios.patch(`https://conquer-api.onrender.com/api/quiz/${quizId}/`, postData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log('Error updating repetition:', error);
+        });
+  };
+
+
   useEffect(() => {
     const questionUrl = 'https://conquer-api.onrender.com/api/get-next-question/';
     const countUrl = 'https://conquer-api.onrender.com/api/count-mark/';
@@ -140,13 +174,18 @@ const App = () => {
                   </div>
                 ))}
               </div>
-              {question.link && (
+              {question.link ? (
                 <div className='link'>
                   <a href={question.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'white' }}>
                     <div className='op-text'>Link</div>
                   </a>
                 </div>
+              ):(
+                <div className='link' onClick={handleOpenModal}>
+                    <div className='op-text'>Add Link</div>
+                </div>
               )}
+              <AddLinkModal isOpen={isModalOpen} onClose={handleCloseModal} onSave={handleSaveLink} />
               <div className='link' style={{ backgroundColor: 'blue' }}
                 onClick={() => { fetchNextQuestion(); }}>
                 <div className='op-text'>Next Qus</div>

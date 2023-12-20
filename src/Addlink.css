@@ -1,0 +1,67 @@
+:root {
+    --main-color: #101922;
+    --box: #232148;
+  }
+
+.Model {
+    margin-top: 120px;
+    align-self: center;
+    width: 320px;
+    min-height: 550px;
+    border-radius: 34px;
+    background: var(--box);
+    font-size: 16px;
+}
+
+.header {
+    padding: 20px;
+    color: aliceblue;
+}
+
+input {
+    margin: 20px;
+    width: 270px;
+    min-height: 40px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: aliceblue;
+    border-width: 1px;
+    text-align: center;
+    margin-bottom: 10px;
+    direction: none;
+}
+
+.mark2, .count2 {
+    display: inline-block;
+    margin-left: 15px;
+     /* Adjust the margin as needed */
+  }
+  
+  /* Optionally, you can style the marks and counts further */
+  .mark2 p, .count2 p {
+    margin: 0;
+    font-size: medium;
+    /* Add additional styling as needed */
+  }
+  .mark2 {
+    width: 60px;
+    height: 30px;
+    background-color: #2ecc71;
+    border-radius: 2px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5px;
+    margin-left: 100px;
+    margin-top: 20px;
+  }
+  
+  .count2 {
+    width: 60px;
+    height: 30px;
+    background-color: #3498db;
+    border-radius: 2px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5px;
+  }
+  

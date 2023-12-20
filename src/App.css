@@ -224,19 +224,17 @@
 
 .number {
   display: inline-block;
-  margin-right: 20px; /* Adjust the margin as needed */
+  margin-right: 10px;
 }
 
 .mark, .count {
   display: inline-block;
-  margin-left: 10px; /* Adjust the margin as needed */
+  margin-left: 5px; 
 }
 
-/* Optionally, you can style the marks and counts further */
 .mark p, .count p {
   margin: 0;
  
-  /* Add additional styling as needed */
 }
 .mark {
   width: 30px;

@@ -1,3 +1,0 @@
-<Reveal effect="fadeInUp">
-          <h1>React Reveal</h1>
-        </Reveal>
