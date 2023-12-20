@@ -41,6 +41,7 @@ input {
   .mark2 p, .count2 p {
     margin: 0;
     font-size: medium;
+    color: aliceblue;
     /* Add additional styling as needed */
   }
   .mark2 {

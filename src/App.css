@@ -224,12 +224,12 @@
 
 .number {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 .mark, .count {
   display: inline-block;
-  margin-left: 5px; 
+  margin-left: 7px; 
 }
 
 .mark p, .count p {
