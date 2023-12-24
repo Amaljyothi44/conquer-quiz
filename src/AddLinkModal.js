@@ -13,7 +13,6 @@ const AddLinkModal = ({ isOpen, onClose, onSave }) => {
   return (
 
     <Modal isOpen={isOpen} onRequestClose={onClose} className='Container' >
-      
       <div className='Model'>
       <h2 className='header'>Add Link</h2>
       <input

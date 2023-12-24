@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import AddLinkModal from'./AddLinkModal.js'
 
+
 const App = () => {
   const [question, setQuestion] = useState(null);
   const [dbcount, setDbcount] = useState(null);
@@ -138,7 +139,7 @@ const App = () => {
           setLoading(false);
         });
     }
-  };
+  }
   
   return (
     <div className='Container'>
