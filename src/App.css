@@ -74,6 +74,7 @@
 }
 
 .link {
+  margin-left: 4PX;
   width: 270px;
   min-height: 40px;
   border-radius: 10px;

@@ -178,8 +178,8 @@ const App = () => {
               </div>
               {question.link ? (
                 <div className='link' style={{ backgroundColor : '#85E6C5' }}>
-                  <a href={question.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'white'  }}>
-                    <div className='op-text' >Read Notes</div>
+                  <a href={question.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#4F6F52'  }}>
+                    <div className='op-text' style={{ Color : '#4F6F52' }}>Read Notes</div>
                   </a>
                 </div>
               ):(
