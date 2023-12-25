@@ -160,7 +160,7 @@ const App = () => {
             <>
             <div className='mark'><p>{dbcount.mark}</p></div>
               <div className='count'><p>{dbcount.count}</p></div>
-              <div className='count' style={{backgroundColor : '#7B66FF'}}><p>{question.eli_len}</p></div>
+              <div className='count' style={{backgroundColor : '#FF6666'}}><p>{question.eli_len}</p></div>
               <p className='number'>Qs: {question.questionNumber} | {question.subject}</p>
               <div className='Question  animatedFadeInUpQuestion'>
                 <p>{question.question}</p>
@@ -177,9 +177,9 @@ const App = () => {
                 ))}
               </div>
               {question.link ? (
-                <div className='link' style={{ backgroundColor : '#7B66FF' }}>
+                <div className='link' style={{ backgroundColor : '#85E6C5' }}>
                   <a href={question.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'white'  }}>
-                    <div className='op-text'>Read Notes</div>
+                    <div className='op-text' >Read Notes</div>
                   </a>
                 </div>
               ):(
