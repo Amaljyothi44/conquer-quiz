@@ -30,7 +30,7 @@ const App = () => {
     const postData = {
       'link': link
   }
-    axios.patch(`https://conquer-api.onrender.com/api/quiz/${quizId}/`, postData, {
+    axios.patch(`${BaseURL}/api/quiz/${quizId}/`, postData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -111,7 +111,7 @@ const App = () => {
       const quizId = question.id;
       const isCorrect = value === correctAnswer;
       const postData = { result: isCorrect };
-      const updateRepetitionUrl = `${BaseURL}api/update-repetition/${quizId}/`;
+      const updateRepetitionUrl = `${BaseURL}/api/update-repetition/${quizId}/`;
       const countMarkUrl = `${BaseURL}/api/count-mark/`;
   
       const promises = [
