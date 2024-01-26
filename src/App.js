@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import AddLinkModal from'./AddLinkModal.js'
-
+import BaseURL from './config.js';
 
 const App = () => {
   const [question, setQuestion] = useState(null);
@@ -45,8 +45,8 @@ const App = () => {
 
 
   useEffect(() => {
-    const questionUrl = 'https://conquer-api.onrender.com/api/get-next-question/';
-    const countUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+    const questionUrl = `${BaseURL}/api/get-next-question/`;
+    const countUrl = `${BaseURL}/api/count-mark/`;
     const promises = [
       axios.get(questionUrl),
       axios.get(countUrl),
@@ -68,8 +68,8 @@ const App = () => {
 
   const fetchNextQuestion = () => {
     setLoading(true);
-    const questionUrl = 'https://conquer-api.onrender.com/api/get-next-question/';
-    const countUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+    const questionUrl = `${BaseURL}/api/get-next-question/`;
+    const countUrl = `${BaseURL}/api/count-mark/`;
 
     const promises = [
       axios.get(questionUrl),
@@ -111,8 +111,8 @@ const App = () => {
       const quizId = question.id;
       const isCorrect = value === correctAnswer;
       const postData = { result: isCorrect };
-      const updateRepetitionUrl = `https://conquer-api.onrender.com/api/update-repetition/${quizId}/`;
-      const countMarkUrl = 'https://conquer-api.onrender.com/api/count-mark/';
+      const updateRepetitionUrl = `${BaseURL}api/update-repetition/${quizId}/`;
+      const countMarkUrl = `${BaseURL}/api/count-mark/`;
   
       const promises = [
         axios.post(updateRepetitionUrl, postData, {
